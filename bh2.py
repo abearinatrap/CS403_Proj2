@@ -26,6 +26,9 @@ class BinomialTree:
         self.children = []
         self.order = 0
         self.color = (255,255,255)
+
+    def set_color(self,val):
+        self.color = val
  
     def add_at_end(self, t):
         self.children.append(t)
@@ -116,6 +119,7 @@ class BinomialHeap: #binomial heap is a collection of binary trees
     def insert(self, key):
         g = BinomialHeap()
         g.trees.append(BinomialTree(key))
+        g.trees[0].set_color((0,0,255))
         self.merge(g)
         debug("frames")
         debug(frames, end="\nendframes\n")
@@ -203,8 +207,8 @@ bheap.insert(8)
 #print(bheap.delete_min())
 #print(bheap.delete_min()
 
-frameSpeed = 1000
-currentFrame = 0
+frameSpeed = 1200
+currentFrame = -1
 while True: 
     while runningAnim:
         for event in pygame.event.get():
@@ -216,13 +220,33 @@ while True:
                     bheap.insert(random.randint(1, 100))
                 if event.unicode == '-':
                     bheap.delete_min()
+                if event.unicode == ' ':
+                    runningAnim = False
         debug(str(currentFrame) + " " + str(len(frames)))
 
         if currentFrame < len(frames):
-            display(frames[currentFrame])
             currentFrame+=1
+            display(frames[currentFrame])
             pygame.time.delay(frameSpeed)
     for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                runningAnim = False
-                sys.exit()
+        if event.type == pygame.QUIT:
+            runningAnim = False
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.unicode == '+':
+                bheap.insert(random.randint(1, 100))
+            if event.unicode == '-':
+                bheap.delete_min()
+            if event.unicode == ' ':
+                runningAnim = True
+                pygame.time.delay(80)
+            if event.unicode == 'f':
+                if currentFrame < len(frames)-1:
+                    currentFrame+=1
+                    display(frames[currentFrame])
+                    pygame.time.delay(80)
+            if event.unicode == 'b':
+                if currentFrame > 0:
+                    currentFrame-=1
+                    display(frames[currentFrame])
+                    pygame.time.delay(80)
