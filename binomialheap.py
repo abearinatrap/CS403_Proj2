@@ -38,7 +38,7 @@ class BinomialHeap: #binomial heap is a collection of binary trees
  
     def combine_roots(self, h):
         self.trees.extend(h.trees)
-        self.trees.sort(key=lambda tree: tree.order)
+        self.trees.sort(key=lambda tree: tree.order, reverse=False)
  
     def merge(self, h):
         self.combine_roots(h)
