@@ -3,7 +3,7 @@ import algviz
 # Create a visualizer object.
 # The default duration of each frame of animation is 0.2 second.
 # The interval between two frames of animation is 0.1 seconds.
-viz = algviz.Visualizer(delay=0.1, wait=0.05)
+viz = algviz.Visualizer(delay=0.2, wait=0.1)
 
 viz.display()               # Display the firt animation frame.
 # Do something...
@@ -36,6 +36,8 @@ viz.display()
 
 
 def find_next_x_index(x, y, curInt):
+    # Used to ensure we flash ONLY the first index with (value > x) light_blue.
+    reached_limit = False
     for i in range(x, curLength):
         if i == 0:
             tab.mark(algviz.color_red, y, x)
@@ -49,6 +51,12 @@ def find_next_x_index(x, y, curInt):
                 viz.display()
                 tab.removeMark(algviz.color_red)
                 viz.display()
+            elif not reached_limit:
+                tab.mark(algviz.color_light_blue, y, i)
+                viz.display()
+                tab.removeMark(algviz.color_light_blue)
+                viz.display()
+                reached_limit = True
     return x
 
 
