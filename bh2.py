@@ -269,6 +269,11 @@ while True:
                     bheap.delete_min()
                 if event.unicode == ' ':
                     runningAnim = False
+                if event.unicode == 'a':
+                    if frameSpeed>=200:
+                        frameSpeed-= 100
+                if event.unicode == 'd':
+                    frameSpeed+= 100
         #debug(str(currentFrame) + " " + str(len(frames)))
         if currentFrame < len(frames)-1:
             currentFrame+=1
@@ -298,3 +303,8 @@ while True:
                     pygame.time.delay(80)
             if event.unicode == 'g':
                 bheap.get_min()
+            if event.unicode == 'a':
+                if frameSpeed>=200:
+                    frameSpeed-= 100
+            if event.unicode == 'd':
+                frameSpeed+= 100
