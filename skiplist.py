@@ -78,7 +78,6 @@ while curAction != 'done':
     curAction = input('Enter \'insert\', \'delete\', \'search\', or \'done\':')
 
     if curAction == 'insert':
-        print('You said insert...')
         curInput = input('Enter an integer: ')  # String value from user input
         # Will be replaced with the value of the integer, if input is valid
         curInt = -1
@@ -256,6 +255,6 @@ while curAction != 'done':
                         viz.display()
 
     elif curAction == 'done':
-        print('You said done...')
+        pass
     else:
         print("INVALID INPUT! Try again...")
