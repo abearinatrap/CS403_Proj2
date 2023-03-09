@@ -79,6 +79,7 @@ class BinomialHeap: #binomial heap is a collection of binary trees
         return l_tree
  
     def combine_roots(self, h):
+        #combine two heaps
         temp_trees = [i for i in self.trees]
         temp2 = [i for i in h.trees]
         finalt = []
@@ -97,9 +98,6 @@ class BinomialHeap: #binomial heap is a collection of binary trees
             del temp2[0]
         
         self.trees = [i for i in finalt]
-        # sorting removes stable property
-        #self.trees.extend(h.trees)
-        #self.trees.sort(key=lambda tree: tree.order)
  
     def merge(self, h):
         runningAnim = False
@@ -251,8 +249,8 @@ bheap.insert(84)
 bheap.insert(26)
 bheap.insert(18)
 bheap.insert(0)
-#bheap.delete_min()
-#bheap.delete_min()
+bheap.delete_min()
+bheap.delete_min()
 
 frameSpeed = 1200
 currentFrame = -1
